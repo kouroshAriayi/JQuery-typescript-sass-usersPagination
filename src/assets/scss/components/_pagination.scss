@@ -1,4 +1,5 @@
 @use './helpers';
+@use './../utils/variables';
 
 .pagination {
     @include helpers.flexStyle(column);
@@ -7,42 +8,42 @@
 
     &_header {
         @include helpers.flexStyle(column);
+        border-radius: variables.$border-radius;
+        background-color: variables.$muted-gray-color;
         gap: 0.8rem;
         width: 80%;
         margin: 2rem 0;
         padding: 0.6rem;
-        border-radius: 10px;
-        background-color: #666666;
 
         button {
             padding: 0.6rem 0.8rem;
             border: none;
-            border-radius: 10px;
+            border-radius: variables.$border-radius;
             font-size: 1.4rem;
             font-weight: bold;
-            color: white;
+            color: variables.$white-color;
             cursor: pointer;
             transition: background-color 0.4s ease-in-out;
         }
 
         button:nth-child(1) {
-            background-color: #00177c;
+            background-color: variables.$primary-color;
 
             &:hover {
-                background-color: #000b3a;
+                background-color: variables.$dark-primary-color;
             }
         }
 
         button:nth-child(2) {
-            background-color: #7c0000;
+            background-color: variables.$danger-color;
 
             &:hover {
-                background-color: #3a0000;
+                background-color: variables.$dark-danger-color;
             }
         }
 
         h3 {
-            color: rgb(112, 0, 0);
+            color: variables.$danger-color;
             font-size: 1.2rem;
         }
     }
@@ -51,16 +52,16 @@
         width: 80%;
         margin: 0 auto;
         padding: 0.4rem 0.6rem;
-        background-color: aliceblue;
-        border-radius: 10px;
+        background-color: variables.$white-color;
+        border-radius: variables.$border-radius;
         overflow: hidden;
     }
 
     #empty_search_message {
         text-align: center;
-        background-color: #ff0000;
-        color: #dadada;
-        border-radius: 4px;
+        background-color: variables.$danger-color;
+        color: variables.$white-color;
+        border-radius: calc(variables.$border-radius - 6px);
         padding: 0.2rem 0.4rem;
     }
 
@@ -93,9 +94,9 @@
             }
 
             th {
+                background-color: variables.$white-color;
+                color: variables.$light-primary-color;
                 padding: 0.4rem 0.2rem;
-                background-color: rgb(206, 206, 206);
-                color: rgb(0, 151, 151);
                 font-size: 1.2rem;
                 font-weight: bold;
                 border: 1px solid black;
@@ -109,47 +110,46 @@
                 width: 100%;
 
                 &.even {
-                    background-color: rgb(56, 56, 56);
-                    color: rgb(252, 252, 252);
+                    background-color: variables.$muted-gray-color;
+                    color: variables.$white-color;
                 }
 
                 &.odd {
-                    background-color: rgb(248, 248, 248);
-                    color: rgb(59, 59, 59);
+                    background-color: variables.$white-color;
+                    color: variables.$muted-gray-color;
                 }
 
                 button {
-                    color: white;
+                    color: variables.$white-color;
                     font-size: 1.1rem;
                     width: 100%;
                     padding: 6px 0;
                     border: none;
-                    border-radius: 6px;
+                    border-radius: calc(variables.$border-radius - 4px);
                     cursor: pointer;
                     transition: background-color 0.4s ease-in-out;
                 }
 
                 button.remove_button {
-                    background-color: #800000;
+                    background-color: variables.$danger-color;
 
                     &:hover {
-                        background-color: #3a0000;
+                        background-color: variables.$dark-danger-color;
                     }
                 }
 
                 button.edit_button,
                 button.save-new-user {
-                    background-color: #0b8000;
-                    ;
+                    background-color: variables.$secondary-color;
 
                     &:hover {
-                        background-color: #003a05;
+                        background-color: variables.$dark-secondary-color;
                     }
                 }
 
                 button.edit-new-user {
                     cursor: not-allowed;
-                    background-color: #666666;
+                    background-color: variables.$muted-gray-color;
                 }
             }
 
@@ -164,12 +164,12 @@
 
 
             .newUserSpecialty>button {
-                background-color: #008000;
+                background-color: variables.$secondary-color;
                 color: white;
                 transition: background-color 0.4s ease-in-out;
 
                 &:hover {
-                    background-color: #003100;
+                    background-color: variables.$dark-secondary-color;
                 }
             }
         }
@@ -185,23 +185,23 @@
             padding: 0.6rem 1rem;
             font-size: 1.2rem;
             border: none;
-            border-radius: 4px;
-            background-color: #00b900;
-            color: #dadada;
+            border-radius: calc(variables.$border-radius - 6px);
+            background-color: variables.$secondary-color;
+            color: variables.$white-color;
             cursor: pointer;
             transition: all 0.2s ease-in-out;
 
 
             &:hover {
-                background-color: #008000;
+                background-color: variables.$dark-secondary-color;
             }
         }
 
         button.active {
-            background-color: #012cec;
+            background-color: variables.$primary-color;
 
             &:hover {
-                background-color: #00177c;
+                background-color: variables.$dark-primary-color;
             }
         }
     }
@@ -338,47 +338,6 @@
             button {
                 padding: 0.4rem 0.8rem;
                 font-size: 1rem;
-            }
-        }
-    }
-}
-
-@media screen and (max-width:399px) {
-    .pagination {
-
-        &_header {
-
-            button {
-                padding: 0.6rem 0.8rem;
-                font-size: 0.8rem;
-            }
-
-            h3 {
-                font-size: 0.6rem;
-                text-align: center;
-            }
-        }
-
-        &-content {
-            width: 95%;
-        }
-
-        &_search {
-            gap: 0.4rem;
-
-            h2 {
-                font-size: 0.8rem;
-            }
-
-            input::placeholder {
-                font-size: 0.6rem;
-            }
-        }
-
-        &_buttons {
-            button {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.8rem;
             }
         }
     }
